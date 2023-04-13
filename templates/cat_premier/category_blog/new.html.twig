@@ -1,0 +1,12 @@
+{% extends 'dashboardbase.html.twig' %}
+
+{% block title %}New CategoryBlog
+{% endblock %}
+
+{% block body %}
+	<h1>Création d'une nouvelle Catégorie blog</h1>
+
+	{{ include('category_blog/_form.html.twig') }}
+
+	<a href="{{ path('app_category_blog_index') }}">Retour</a>
+{% endblock %}

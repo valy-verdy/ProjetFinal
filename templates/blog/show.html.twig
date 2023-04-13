@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article Blog
+{% endblock %}
+
+{% block body %}
+	<h1>Article Blog</h1>
+
+	{% for image in imagesBlog %}
+		
+	<img src="{{ asset('build/images/' ~ image.link) }}" width="200">
+	{% endfor %}
+
+	<table class="table">
+		<tbody>
+			
+			<tr>
+				<th>Title</th>
+				<td>{{ article_blog.title }}</td>
+			</tr>
+			<tr>
+				<th>Content</th>
+				<td>{{ article_blog.content }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a class="btn btn-outline-dark" href="{{ path('app_blog') }}">Retour</a>
+
+
+{% endblock %}

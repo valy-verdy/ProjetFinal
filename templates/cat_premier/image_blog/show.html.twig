@@ -1,0 +1,27 @@
+{% extends 'dashboardbase.html.twig' %}
+
+{% block title %}ImageBlog
+{% endblock %}
+
+{% block body %}
+	<h1>Images Blog</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ image_blog.id }}</td>
+			</tr>
+			<tr>
+				<th>Photo</th>
+				<td>{{ image_blog.link }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a class="btn btn-secondary" href="{{ path('app_image_blog_index') }}">Retour</a>
+
+	<a class="btn btn-warning" href="{{ path('app_image_blog_edit', {'id': image_blog.id}) }}">Modifier</a>
+
+	{{ include('image_blog/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_home') }}">Valverline</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-tabs me-auto mb-2 mb-lg-0">
+                {# Lien vers Page d'accueil #}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ path('app_home') }}">Acceuil</a>
+                </li>
+                {# Lien vers Produit #}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('product_index') }}">Produits</a>
+                </li>
+                {# Lien vers Catégories #}
+                <li class="nav-item">
+                    <a class="nav-link" href=" {{ path('app_category_index') }}">Categories</a>
+                </li>
+
+                {# Si utilisateur connecté est ADMIN, affichage des options administrateurs #}
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href=" {{ path("user_index") }} ">All Users</a>
+                                <a class="dropdown-item" href=" {{ path("new_product") }} ">Add a Product</a>
+                                <a class="dropdown-item" href=" {{ path("app_category_new") }} ">Add a Category</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+                
+            </ul>
+            <ul class="navbar-nav nav-tabs ms-auto mb-2 mb-lg-0">
+                {# Lien vers Panier #}
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_cart') }}">Panier</a>
+                </li>
+
+
+
+
+                	{% if is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_customer_show',{'id':app.user.id}) }}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('order_all') }}"><i class="bi bi-box-seam"></i> Commandes</a>
+					</li>
+				{% endif %}
+
+
+
+                
+                {# Affichage du compte utilisateur connecté #}
+                {# Si non connecté, affichage de bouton Inscription. #}
+                <li class="nav-item">
+                    {% if app.user %}
+                        <span class="nav-link">{{ app.user.userIdentifier }}</span>
+                    {% else %}
+                        <a class="nav-link" href="{{ path("app_register") }}">S'inscrire</a>
+                    {% endif %}
+                </li>
+                {# Lien vers Connexion/Déconnexion#}
+                <li class="nav-item">
+                    {% if not app.user %}
+                        <a class="nav-link" href="{{ path('app_login') }}">Se Connecter</a>
+                    {% else %}
+                        <a class="nav-link" href="{{ path("app_logout") }}">Se Déconnecter</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

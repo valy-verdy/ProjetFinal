@@ -1,0 +1,36 @@
+{% extends 'dashboardbase.html.twig' %}
+
+{% block title %}ImageBlog index
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des images du blog</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Photo</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for image_blog in image_blogs %}
+				<tr>
+					<td>{{ image_blog.id }}</td>
+					<td>{{ image_blog.link }}</td>
+					<td>
+						<a class="btn btn-success" href="{{ path('app_image_blog_show', {'id': image_blog.id}) }}">Voir</a>
+						<a class="btn btn-warning" href="{{ path('app_image_blog_edit', {'id': image_blog.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">Aucun résultat trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a class="btn btn-primary" href="{{ path('app_image_blog_new') }}">Création</a>
+{% endblock %}

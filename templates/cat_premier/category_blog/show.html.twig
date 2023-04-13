@@ -1,0 +1,31 @@
+{% extends 'dashboardbase.html.twig' %}
+
+{% block title %}CategoryBlog
+{% endblock %}
+
+{% block body %}
+	<h1>Catégorie Blog</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ category_blog.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ category_blog.name }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ category_blog.description }}</td>
+			</tr>
+		</tbody>
+	<a class="btn btn-secondary" href="{{ path('app_category_blog_index') }}">Retour</a>
+
+	<a class="btn btn-warning" href="{{ path('app_category_blog_edit', {'id': category_blog.id}) }}">Modifier</a>
+	{{ include('category_blog/_delete_form.html.twig') }}
+	</table>
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'dashboardbase.html.twig' %}
+
+{% block title %}New ArticleBlog
+{% endblock %}
+
+{% block body %}
+	<h1>Création d'un nouveau ArticleBlog</h1>
+
+	{{ include('article_blog/_form.html.twig') }}
+
+	<a class="btn btn-secondary" href="{{ path('app_article_blog_index') }}">Retour</a>
+{% endblock %}
